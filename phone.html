@@ -1,0 +1,897 @@
+<html><head><base href="https://websimgpt.com/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="中投區會考錄取分數查詢，提供中投區會考生查詢使用">
+<meta name="keywords" content="中投區, 會考, 落點分析, 教育, 學校,臺中一中,臺中女中,興大附中,文華高中,臺中二中,惠文高中,東山高中,長億高中,私立明道高中,私立明德高中,臺中高工,臺中家商,興大附農">
+<meta name="author" content="中投區會考錄取分數">
+<title>CTTW落點分析查詢</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<style>
+  :root {
+    --primary-color: #4a90e2;
+    --secondary-color: #34495e;
+    --background-color: #f5f7fa;
+    --text-color: #333;
+    --accent-color: #e67e22;
+    --success-color: #2ecc71;
+    --warning-color: #f39c12;
+    --error-color: #e74c3c;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Noto Sans TC', 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    background-image: 
+      radial-gradient(circle at 100% 50%, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.2) 10%, transparent 10%),
+      radial-gradient(circle at 0% 50%, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.2) 10%, transparent 10%);
+    background-size: 20px 20px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    text-align: center;
+    padding: 3rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    border-radius: 0 0 50% 50% / 20px;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255, 255, 255, 0.1) 10px,
+      rgba(255, 255, 255, 0.1) 20px
+    );
+    animation: shine 20s linear infinite;
+  }
+
+  @keyframes shine {
+    0% {
+      transform: translateX(-50%) translateY(-50%) rotate(0deg);
+    }
+    100% {
+      transform: translateX(-50%) translateY(-50%) rotate(360deg);
+    }
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 2px;
+  }
+
+  .search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  #search-input {
+    width: 60%;
+    padding: 1rem;
+    font-size: 1rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 50px 0 0 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  #search-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3);
+  }
+
+  #search-button {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0 50px 50px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  #search-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transition: all 0.5s;
+  }
+
+  #search-button:hover::before {
+    left: 100%;
+  }
+
+  #search-button:hover {
+    background-color: #3a7cbd;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    background-color: transparent;
+    margin-bottom: 2rem;
+  }
+
+  th, td {
+    padding: 15px;
+    text-align: left;
+  }
+
+  th {
+    background-color: var(--secondary-color);
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 10px 10px 0 0;
+  }
+
+  tbody tr {
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+
+  tbody tr:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+
+  td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    transform: scale(0.7);
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  .modal.show .modal-content {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: var(--accent-color);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 2rem;
+    background-color: var(--secondary-color);
+    color: white;
+    border-radius: 20px 20px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255, 255, 255, 0.1) 10px,
+      rgba(255, 255, 255, 0.1) 20px
+    );
+    animation: shine 20s linear infinite;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--primary-color);
+    border-top: 5px solid var(--secondary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .icon {
+    margin-right: 10px;
+    color: var(--accent-color);
+  }
+
+  .top-header {
+    background-color: var(--secondary-color);
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  .top-header-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .top-header-links li {
+    margin: 0 15px;
+  }
+
+  .top-header-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 15px;
+  }
+
+  .top-header-links a:hover {
+    color: var(--accent-color);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 10px;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .search-container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #search-input, #search-button {
+      width: 100%;
+      border-radius: 50px;
+      margin-bottom: 10px;
+    }
+
+    table {
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 10px 5px;
+    }
+
+    .top-header-links {
+      flex-direction: column;
+    }
+
+    .top-header-links li {
+      margin: 5px 0;
+    }
+
+    .modal-content {
+      width: 95%;
+      margin: 5% auto;
+      padding: 20px;
+    }
+
+    thead {
+      display: none;
+    }
+
+    tbody tr {
+      display: block;
+      margin-bottom: 15px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    td {
+      display: block;
+      text-align: right;
+      padding: 10px;
+      position: relative;
+      padding-left: 50%;
+    }
+
+    td:before {
+      content: attr(data-label);
+      position: absolute;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    .modal-content {
+      padding: 15px;
+    }
+
+    #modal-school-name {
+      font-size: 1.5rem;
+    }
+
+    #modal-school-features,
+    #modal-school-teachers,
+    #modal-school-admission-rate {
+      font-size: 0.9rem;
+    }
+  }
+
+  .feature-box {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .feature-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .feature-box h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+  }
+
+  .feature-box p {
+    color: var(--text-color);
+  }
+
+  .stats-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  .stat-box {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 200px;
+    transition: all 0.3s ease;
+  }
+
+  .stat-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+  }
+
+  .stat-label {
+    font-size: 1rem;
+    color: var(--text-color);
+  }
+
+  #chart-container {
+    width: 100%;
+    height: 400px;
+    margin-top: 2rem;
+  }
+</style>
+</head>
+<body>
+<div class="top-header">
+  <ul class="top-header-links">
+    <li><a href="https://websimgpt.com/home"><i class="fas fa-home"></i> 首頁</a></li>
+    <li><a href="https://websimgpt.com/about"><i class="fas fa-info-circle"></i> 關於我們</a></li>
+    <li><a href="https://websimgpt.com/contact"><i class="fas fa-envelope"></i> 聯絡我們</a></li>
+    <li><a href="https://websimgpt.com/faq"><i class="fas fa-question-circle"></i> 常見問題</a></li>
+  </ul>
+</div>
+
+<div class="loading-overlay" id="loading-overlay">
+  <div class="loading-spinner"></div>
+</div>
+
+<div class="container">
+  <header class="animate__animated animate__fadeIn">
+    <h1><i class="fas fa-graduation-cap icon"></i>中投區高中錄取分數查詢</h1>
+    <p><i class="fas fa-search icon"></i>探索您的未來，找到最適合您的學校</p>
+  </header>
+
+  <div class="search-container animate__animated animate__fadeInUp">
+    <input type="text" id="search-input" placeholder="輸入學校名稱或錄取科組...">
+    <button id="search-button"><i class="fas fa-search"></i> 搜尋</button>
+  </div>
+
+  <div class="feature-box animate__animated animate__fadeIn">
+    <h3><i class="fas fa-chart-line icon"></i>最新統計資料</h3>
+    <p>根據最新統計，今年的會考成績整體表現有所提升。查看詳細分析，了解您在競爭中的位置。</p>
+  </div>
+
+  <div class="stats-container">
+    <div class="stat-box animate__animated animate__fadeIn">
+      <div class="stat-number" id="total-schools">0</div>
+      <div class="stat-label">參與學校總數</div>
+    </div>
+    <div class="stat-box animate__animated animate__fadeIn">
+      <div class="stat-number" id="avg-score">0</div>
+      <div class="stat-label">平均錄取分數</div>
+    </div>
+    <div class="stat-box animate__animated animate__fadeIn">
+      <div class="stat-number" id="highest-score">0</div>
+      <div class="stat-label">最高錄取分數</div>
+    </div>
+  </div>
+
+  <div id="chart-container"></div>
+
+  <table id="school-table" class="animate__animated animate__fadeIn">
+    <thead>
+      <tr>
+        <th><i class="fas fa-hashtag icon"></i>序號</th>
+        <th><i class="fas fa-school icon"></i>錄取學校</th>
+        <th><i class="fas fa-book icon"></i>錄取科組</th>
+        <th><i class="fas fa-chart-bar icon"></i>會考積分</th>
+        <th><i class="fas fa-star icon"></i>會考積點</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <div id="school-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="modal-school-name"></h2>
+      <p id="modal-school-features"><i class="fas fa-check-circle icon"></i></p>
+      <p id="modal-school-teachers"><i class="fas fa-chalkboard-teacher icon"></i></p>
+      <p id="modal-school-admission-rate"><i class="fas fa-chart-line icon"></i></p>
+    </div>
+  </div>
+
+  <footer class="animate__animated animate__fadeIn">
+    <p><i class="far fa-copyright icon"></i> 2024 CTTW各校分數查詢. All rights reserved.</p>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const API_URL = 'https://script.google.com/macros/s/AKfycbx4GQzWHFfybRLuW17tICfxNxN8kJLM9nh7GfahSG9ZPXJOtLM3AeGG8wueaFXnsl-m/exec';
+const schoolTable = document.getElementById('school-table').getElementsByTagName('tbody')[0];
+const searchInput = document.getElementById('search-input');
+const searchButton = document.getElementById('search-button');
+const modal = document.getElementById('school-modal');
+const modalSchoolName = document.getElementById('modal-school-name');
+const modalSchoolFeatures = document.getElementById('modal-school-features');
+const modalSchoolTeachers = document.getElementById('modal-school-teachers');
+const modalSchoolAdmissionRate = document.getElementById('modal-school-admission-rate');
+const closeModal = document.getElementsByClassName('close')[0];
+const loadingOverlay = document.getElementById('loading-overlay');
+const totalSchoolsElement = document.getElementById('total-schools');
+const avgScoreElement = document.getElementById('avg-score');
+const highestScoreElement = document.getElementById('highest-score');
+
+let schoolData = [];
+let chart;
+
+function showLoading() {
+  loadingOverlay.style.display = 'flex';
+}
+
+function hideLoading() {
+  loadingOverlay.style.display = 'none';
+}
+
+async function fetchSchoolData() {
+  showLoading();
+  try {
+    const response = await axios.get(`${API_URL}?action=getData`);
+    schoolData = response.data;
+    displaySchoolData(schoolData);
+    updateStats(schoolData);
+    createChart(schoolData);
+  } catch (error) {
+    console.error('Error fetching school data:', error);
+  } finally {
+    hideLoading();
+  }
+}
+
+function displaySchoolData(data) {
+  schoolTable.innerHTML = '';
+  data.forEach((school, index) => {
+    const row = schoolTable.insertRow();
+    row.className = 'animate__animated animate__fadeIn';
+    row.style.animationDelay = `${index * 0.05}s`;
+    row.innerHTML = `
+      <td data-label="序號">${school['序號']}</td>
+      <td data-label="錄取學校">${school['錄取學校']}</td>
+      <td data-label="錄取科組">${school['錄取科組']}</td>
+      <td data-label="會考積分">${school['超額比序總積分']}</td>
+      <td data-label="會考積點">${school['會考積點']}</td>
+    `;
+    row.addEventListener('click', () => showSchoolDetails(school['錄取學校']));
+  });
+}
+
+async function showSchoolDetails(schoolName) {
+  showLoading();
+  try {
+    const response = await axios.get(`${API_URL}?action=getSchoolDetails&school=${encodeURIComponent(schoolName)}`);
+    const schoolDetails = response.data;
+    
+    modalSchoolName.innerHTML = `<i class="fas fa-school icon"></i>${schoolName}`;
+    modalSchoolFeatures.innerHTML = `<i class="fas fa-check-circle icon"></i>學校特色: ${schoolDetails['特色']}`;
+    modalSchoolTeachers.innerHTML = `<i class="fas fa-chalkboard-teacher icon"></i>師資: ${schoolDetails['師資']}`;
+    modalSchoolAdmissionRate.innerHTML = `<i class="fas fa-chart-line icon"></i>升學率: ${schoolDetails['升學率']}`;
+    
+    modal.style.display = 'block';
+    setTimeout(() => {
+      modal.classList.add('show');
+    }, 10);
+    document.body.style.overflow = 'hidden';
+  } catch (error) {
+    console.error('Error fetching school details:', error);
+  } finally {
+    hideLoading();
+  }
+}
+
+function searchSchools() {
+  showLoading();
+  const searchTerm = searchInput.value.toLowerCase();
+  const filteredSchools = schoolData.filter(school => 
+    school['錄取學校'].toLowerCase().includes(searchTerm) || 
+    school['錄取科組'].toLowerCase().includes(searchTerm)
+  );
+  displaySchoolData(filteredSchools);
+  hideLoading();
+}
+
+function updateStats(data) {
+  const totalSchools = new Set(data.map(school => school['錄取學校'])).size;
+  const avgScore = Math.round(data.reduce((sum, school) => sum + parseFloat(school['超額比序總積分']), 0) / data.length);
+  const highestScore = Math.max(...data.map(school => parseFloat(school['超額比序總積分'])));
+
+  animateNumber(totalSchoolsElement, 0, totalSchools, 2000);
+  animateNumber(avgScoreElement, 0, avgScore, 2000);
+  animateNumber(highestScoreElement, 0, highestScore, 2000);
+}
+
+function animateNumber(element, start, end, duration) {
+  let current = start;
+  const range = end - start;
+  const increment = end > start ? 1 : -1;
+  const stepTime = Math.abs(Math.floor(duration / range));
+  const timer = setInterval(() => {
+    current += increment;
+    element.textContent = current;
+    if (current == end) {
+      clearInterval(timer);
+    }
+  }, stepTime);
+}
+
+function createChart(data) {
+  const ctx = document.getElementById('chart-container').getContext('2d');
+  const schoolCounts = {};
+  data.forEach(school => {
+    schoolCounts[school['錄取學校']] = (schoolCounts[school['錄取學校']] || 0) + 1;
+  });
+
+  const sortedSchools = Object.entries(schoolCounts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10);
+
+  const chartData = {
+    labels: sortedSchools.map(school => school[0]),
+    datasets: [{
+      label: '錄取人數',
+      data: sortedSchools.map(school => school[1]),
+      backgroundColor: 'rgba(74, 144, 226, 0.7)',
+      borderColor: 'rgba(74, 144, 226, 1)',
+      borderWidth: 1
+    }]
+  };
+
+  if (chart) {
+    chart.destroy();
+  }
+
+  chart = new Chart(ctx, {
+    type: 'bar',
+    data: chartData,
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: '錄取人數'
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: '學校'
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: false
+        },
+        title: {
+          display: true,
+          text: '前10名學校錄取人數統計'
+        }
+      }
+    }
+  });
+}
+
+searchButton.addEventListener('click', searchSchools);
+searchInput.addEventListener('keyup', (event) => {
+  if (event.key === 'Enter') {
+    searchSchools();
+  }
+});
+
+closeModal.onclick = () => {
+  modal.classList.remove('show');
+  setTimeout(() => {
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }, 300);
+};
+
+window.onclick = (event) => {
+  if (event.target == modal) {
+    modal.classList.remove('show');
+    setTimeout(() => {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }, 300);
+  }
+};
+
+fetchSchoolData();
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+});
+
+window.addEventListener('scroll', () => {
+  const header = document.querySelector('header');
+  const scrollPosition = window.pageYOffset;
+  header.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
+});
+
+const tableRows = document.querySelectorAll('table tr');
+tableRows.forEach(row => {
+  row.addEventListener('mouseenter', () => {
+    row.style.transform = 'scale(1.02)';
+    row.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+  });
+  row.addEventListener('mouseleave', () => {
+    row.style.transform = 'scale(1)';
+    row.style.boxShadow = 'none';
+  });
+});
+
+const placeholders = ['輸入學校名稱...', '輸入錄取科組...', '探索您的未來...'];
+let placeholderIndex = 0;
+let charIndex = 0;
+
+function typeplaceholder() {
+  if (charIndex < placeholders[placeholderIndex].length) {
+    searchInput.placeholder += placeholders[placeholderIndex].charAt(charIndex);
+    charIndex++;
+    setTimeout(typeplaceholder, 100);
+  } else {
+    setTimeout(eraseplaceholder, 2000);
+  }
+}
+
+function eraseplaceholder() {
+  if (charIndex > 0) {
+    searchInput.placeholder = placeholders[placeholderIndex].substring(0, charIndex - 1);
+    charIndex--;
+    setTimeout(eraseplaceholder, 50);
+  } else {
+    placeholderIndex = (placeholderIndex + 1) % placeholders.length;
+    setTimeout(typeplaceholder, 500);
+  }
+}
+
+typeplaceholder();
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+function checkSwipe() {
+  if (touchEndX < touchStartX) {
+    console.log('Swiped left');
+  }
+  if (touchEndX > touchStartX) {
+    console.log('Swiped right');
+  }
+}
+
+document.addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+document.addEventListener('touchend', e => {
+  touchEndX = e.changedTouches[0].screenX;
+  checkSwipe();
+});
+
+const topHeader = document.querySelector('.top-header');
+const mobileMenuBtn = document.createElement('button');
+mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+mobileMenuBtn.classList.add('mobile-menu-btn');
+topHeader.prepend(mobileMenuBtn);
+
+mobileMenuBtn.addEventListener('click', () => {
+  topHeader.classList.toggle('show-mobile-menu');
+});
+
+// Add this CSS for the mobile menu button
+const style = document.createElement('style');
+style.textContent = `
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-menu-btn {
+      display: block;
+    }
+
+    .top-header-links {
+      display: none;
+    }
+
+    .top-header.show-mobile-menu .top-header-links {
+      display: block;
+    }
+  }
+`;
+document.head.appendChild(style);
+</script>
+</body></html>
