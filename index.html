@@ -1,0 +1,390 @@
+<html><head><base href="https://script.google.com/macros/s/your-app-script-deployment-id/exec" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>臺中市高中錄取排名查詢系統</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<style>
+  :root {
+    --primary-color: #4a90e2;
+    --secondary-color: #34495e;
+    --background-color: #f5f7fa;
+    --text-color: #333;
+    --accent-color: #e67e22;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  #search-input {
+    width: 60%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 4px 0 0 4px;
+    transition: all 0.3s ease;
+  }
+
+  #search-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3);
+  }
+
+  #search-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  #search-button:hover {
+    background-color: #3a7cbd;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  th, td {
+    padding: 15px;
+    text-align: left;
+  }
+
+  th {
+    background-color: var(--secondary-color);
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f8f9fa;
+  }
+
+  tr:hover {
+    background-color: #e9ecef;
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: var(--accent-color);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: var(--secondary-color);
+    color: white;
+    border-radius: 8px;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  /* Loading Animation */
+  .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--primary-color);
+    border-top: 5px solid var(--secondary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Icon styles */
+  .icon {
+    margin-right: 10px;
+    color: var(--accent-color);
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .container {
+      padding: 10px;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    #search-input {
+      width: 70%;
+    }
+
+    table {
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 10px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="loading-overlay" id="loading-overlay">
+  <div class="loading-spinner"></div>
+</div>
+
+<div class="container">
+  <header>
+    <h1><i class="fas fa-graduation-cap icon"></i>中投區高中錄取分數查詢</h1>
+    <p><i class="fas fa-search icon"></i>供您參考中投區各校落點</p>
+  </header>
+
+  <div class="search-container">
+    <input type="text" id="search-input" placeholder="輸入學校名稱或錄取科組...">
+    <button id="search-button"><i class="fas fa-search"></i> 搜尋</button>
+  </div>
+
+  <table id="school-table">
+    <thead>
+      <tr>
+        <th><i class="fas fa-hashtag icon"></i>序號</th>
+        <th><i class="fas fa-school icon"></i>錄取學校</th>
+        <th><i class="fas fa-book icon"></i>錄取科組</th>
+        <th><i class="fas fa-chart-bar icon"></i>超額比序總積分</th>
+        <th><i class="fas fa-star icon"></i>會考積點</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <div id="school-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="modal-school-name"></h2>
+      <p id="modal-school-features"><i class="fas fa-check-circle icon"></i></p>
+      <p id="modal-school-teachers"><i class="fas fa-chalkboard-teacher icon"></i></p>
+      <p id="modal-school-admission-rate"><i class="fas fa-chart-line icon"></i></p>
+    </div>
+  </div>
+
+  <footer>
+    <p><i class="far fa-copyright icon"></i> 2024 CTTW各校分數查詢. All rights reserved.</p>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script>
+const API_URL = 'https://script.google.com/macros/s/AKfycbx4GQzWHFfybRLuW17tICfxNxN8kJLM9nh7GfahSG9ZPXJOtLM3AeGG8wueaFXnsl-m/exec';
+const schoolTable = document.getElementById('school-table').getElementsByTagName('tbody')[0];
+const searchInput = document.getElementById('search-input');
+const searchButton = document.getElementById('search-button');
+const modal = document.getElementById('school-modal');
+const modalSchoolName = document.getElementById('modal-school-name');
+const modalSchoolFeatures = document.getElementById('modal-school-features');
+const modalSchoolTeachers = document.getElementById('modal-school-teachers');
+const modalSchoolAdmissionRate = document.getElementById('modal-school-admission-rate');
+const closeModal = document.getElementsByClassName('close')[0];
+const loadingOverlay = document.getElementById('loading-overlay');
+
+let schoolData = [];
+
+function showLoading() {
+  loadingOverlay.style.display = 'flex';
+}
+
+function hideLoading() {
+  loadingOverlay.style.display = 'none';
+}
+
+async function fetchSchoolData() {
+  showLoading();
+  try {
+    const response = await axios.get(`${API_URL}?action=getData`);
+    schoolData = response.data;
+    displaySchoolData(schoolData);
+  } catch (error) {
+    console.error('Error fetching school data:', error);
+  } finally {
+    hideLoading();
+  }
+}
+
+function displaySchoolData(data) {
+  schoolTable.innerHTML = '';
+  data.forEach((school, index) => {
+    const row = schoolTable.insertRow();
+    row.className = 'fade-in';
+    row.style.animationDelay = `${index * 0.05}s`;
+    row.innerHTML = `
+      <td>${school['序號']}</td>
+      <td>${school['錄取學校']}</td>
+      <td>${school['錄取科組']}</td>
+      <td>${school['超額比序總積分']}</td>
+      <td>${school['會考積點']}</td>
+    `;
+    row.addEventListener('click', () => showSchoolDetails(school['錄取學校']));
+  });
+}
+
+async function showSchoolDetails(schoolName) {
+  showLoading();
+  try {
+    const response = await axios.get(`${API_URL}?action=getSchoolDetails&school=${encodeURIComponent(schoolName)}`);
+    const schoolDetails = response.data;
+    
+    modalSchoolName.innerHTML = `<i class="fas fa-school icon"></i>${schoolName}`;
+    modalSchoolFeatures.innerHTML = `<i class="fas fa-check-circle icon"></i>學校特色: ${schoolDetails['特色']}`;
+    modalSchoolTeachers.innerHTML = `<i class="fas fa-chalkboard-teacher icon"></i>師資力量: ${schoolDetails['師資']}`;
+    modalSchoolAdmissionRate.innerHTML = `<i class="fas fa-chart-line icon"></i>升學率: ${schoolDetails['升學率']}`;
+    
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  } catch (error) {
+    console.error('Error fetching school details:', error);
+  } finally {
+    hideLoading();
+  }
+}
+
+function searchSchools() {
+  showLoading();
+  const searchTerm = searchInput.value.toLowerCase();
+  const filteredSchools = schoolData.filter(school => 
+    school['錄取學校'].toLowerCase().includes(searchTerm) || 
+    school['錄取科組'].toLowerCase().includes(searchTerm)
+  );
+  displaySchoolData(filteredSchools);
+  hideLoading();
+}
+
+searchButton.addEventListener('click', searchSchools);
+searchInput.addEventListener('keyup', (event) => {
+  if (event.key === 'Enter') {
+    searchSchools();
+  }
+});
+
+closeModal.onclick = () => {
+  modal.style.display = 'none';
+  document.body.style.overflow = 'auto';
+};
+
+window.onclick = (event) => {
+  if (event.target == modal) {
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+};
+
+fetchSchoolData();
+
+// Add smooth scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+});
+</script>
+</body></html>
