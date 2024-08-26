@@ -1,9 +1,10 @@
 <html><head><base href="https://script.google.com/macros/s/your-app-script-deployment-id/exec" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>臺中市高中錄取排名查詢系統</title>
+<title>CTTW落點分析查詢</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 <style>
   :root {
     --primary-color: #4a90e2;
@@ -24,6 +25,10 @@
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background-color);
+    background-image: 
+      radial-gradient(circle at 100% 50%, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.2) 10%, transparent 10%),
+      radial-gradient(circle at 0% 50%, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.2) 10%, transparent 10%);
+    background-size: 20px 20px;
   }
 
   .container {
@@ -39,12 +44,42 @@
     padding: 2rem;
     margin-bottom: 2rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255, 255, 255, 0.1) 10px,
+      rgba(255, 255, 255, 0.1) 20px
+    );
+    animation: shine 20s linear infinite;
+  }
+
+  @keyframes shine {
+    0% {
+      transform: translateX(-50%) translateY(-50%) rotate(0deg);
+    }
+    100% {
+      transform: translateX(-50%) translateY(-50%) rotate(360deg);
+    }
   }
 
   h1 {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
   }
 
   .search-container {
@@ -75,11 +110,35 @@
     border: none;
     border-radius: 0 4px 4px 0;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #search-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transition: all 0.5s;
+  }
+
+  #search-button:hover::before {
+    left: 100%;
   }
 
   #search-button:hover {
     background-color: #3a7cbd;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   table {
@@ -90,6 +149,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
+    transition: all 0.3s ease;
   }
 
   th, td {
@@ -110,6 +170,8 @@
 
   tr:hover {
     background-color: #e9ecef;
+    transform: scale(1.02);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .modal {
@@ -134,6 +196,14 @@
     max-width: 600px;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    transform: scale(0.7);
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  .modal.show .modal-content {
+    transform: scale(1);
+    opacity: 1;
   }
 
   .close {
@@ -158,6 +228,25 @@
     background-color: var(--secondary-color);
     color: white;
     border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255, 255, 255, 0.1) 10px,
+      rgba(255, 255, 255, 0.1) 20px
+    );
+    animation: shine 20s linear infinite;
   }
 
   @keyframes fadeIn {
@@ -233,17 +322,17 @@
 </div>
 
 <div class="container">
-  <header>
+  <header class="animate__animated animate__fadeIn">
     <h1><i class="fas fa-graduation-cap icon"></i>中投區高中錄取分數查詢</h1>
     <p><i class="fas fa-search icon"></i>供您參考中投區各校落點</p>
   </header>
 
-  <div class="search-container">
+  <div class="search-container animate__animated animate__fadeInUp">
     <input type="text" id="search-input" placeholder="輸入學校名稱或錄取科組...">
     <button id="search-button"><i class="fas fa-search"></i> 搜尋</button>
   </div>
 
-  <table id="school-table">
+  <table id="school-table" class="animate__animated animate__fadeIn">
     <thead>
       <tr>
         <th><i class="fas fa-hashtag icon"></i>序號</th>
@@ -266,7 +355,7 @@
     </div>
   </div>
 
-  <footer>
+  <footer class="animate__animated animate__fadeIn">
     <p><i class="far fa-copyright icon"></i> 2024 CTTW各校分數查詢. All rights reserved.</p>
   </footer>
 </div>
@@ -312,7 +401,7 @@ function displaySchoolData(data) {
   schoolTable.innerHTML = '';
   data.forEach((school, index) => {
     const row = schoolTable.insertRow();
-    row.className = 'fade-in';
+    row.className = 'animate__animated animate__fadeIn';
     row.style.animationDelay = `${index * 0.05}s`;
     row.innerHTML = `
       <td>${school['序號']}</td>
@@ -333,10 +422,13 @@ async function showSchoolDetails(schoolName) {
     
     modalSchoolName.innerHTML = `<i class="fas fa-school icon"></i>${schoolName}`;
     modalSchoolFeatures.innerHTML = `<i class="fas fa-check-circle icon"></i>學校特色: ${schoolDetails['特色']}`;
-    modalSchoolTeachers.innerHTML = `<i class="fas fa-chalkboard-teacher icon"></i>師資力量: ${schoolDetails['師資']}`;
+    modalSchoolTeachers.innerHTML = `<i class="fas fa-chalkboard-teacher icon"></i>師資: ${schoolDetails['師資']}`;
     modalSchoolAdmissionRate.innerHTML = `<i class="fas fa-chart-line icon"></i>升學率: ${schoolDetails['升學率']}`;
     
     modal.style.display = 'block';
+    setTimeout(() => {
+      modal.classList.add('show');
+    }, 10);
     document.body.style.overflow = 'hidden';
   } catch (error) {
     console.error('Error fetching school details:', error);
@@ -364,14 +456,20 @@ searchInput.addEventListener('keyup', (event) => {
 });
 
 closeModal.onclick = () => {
-  modal.style.display = 'none';
-  document.body.style.overflow = 'auto';
+  modal.classList.remove('show');
+  setTimeout(() => {
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }, 300);
 };
 
 window.onclick = (event) => {
   if (event.target == modal) {
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
+    modal.classList.remove('show');
+    setTimeout(() => {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }, 300);
   }
 };
 
@@ -386,5 +484,53 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
   });
 });
+
+// Add parallax effect to header
+window.addEventListener('scroll', () => {
+  const header = document.querySelector('header');
+  const scrollPosition = window.pageYOffset;
+  header.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
+});
+
+// Add hover effect to table rows
+const tableRows = document.querySelectorAll('table tr');
+tableRows.forEach(row => {
+  row.addEventListener('mouseenter', () => {
+    row.style.transform = 'scale(1.02)';
+    row.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+  });
+  row.addEventListener('mouseleave', () => {
+    row.style.transform = 'scale(1)';
+    row.style.boxShadow = 'none';
+  });
+});
+
+// Add typing effect to search input placeholder
+const placeholders = ['輸入學校名稱...', '輸入錄取科組...', '探索您的未來...'];
+let placeholderIndex = 0;
+let charIndex = 0;
+
+function typeplaceholder() {
+  if (charIndex < placeholders[placeholderIndex].length) {
+    searchInput.placeholder += placeholders[placeholderIndex].charAt(charIndex);
+    charIndex++;
+    setTimeout(typeplaceholder, 100);
+  } else {
+    setTimeout(eraseplaceholder, 2000);
+  }
+}
+
+function eraseplaceholder() {
+  if (charIndex > 0) {
+    searchInput.placeholder = placeholders[placeholderIndex].substring(0, charIndex - 1);
+    charIndex--;
+    setTimeout(eraseplaceholder, 50);
+  } else {
+    placeholderIndex = (placeholderIndex + 1) % placeholders.length;
+    setTimeout(typeplaceholder, 500);
+  }
+}
+
+typeplaceholder();
 </script>
 </body></html>
