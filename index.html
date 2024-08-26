@@ -1,9 +1,9 @@
 <html><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="description" content="中投區會考錄取分數查詢，提供中投區會考生查詢使用">
-    <meta name="keywords" content="中投區, 會考, 落點分析, 教育, 學校,臺中一中,臺中女中,興大附中,文華高中,臺中二中,惠文高中,東山高中,長億高中,私立明道高中,私立明德高中,臺中高工,臺中家商,興大附農">
-    <meta name="author" content="中投區會考錄取分數">
+<meta name="description" content="中投區會考錄取分數查詢，提供中投區會考生查詢使用">
+<meta name="keywords" content="中投區, 會考, 落點分析, 教育, 學校,臺中一中,臺中女中,興大附中,文華高中,臺中二中,惠文高中,東山高中,長億高中,私立明道高中,私立明德高中,臺中高工,臺中家商,興大附農">
+<meta name="author" content="中投區會考錄取分數">
 <title>CTTW落點分析查詢</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -295,18 +295,59 @@
     color: var(--accent-color);
   }
 
-  /* Responsive design */
+  /* Top header styles */
+  .top-header {
+    background-color: var(--secondary-color);
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  .top-header-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .top-header-links li {
+    display: inline-block;
+    margin: 0 15px;
+  }
+
+  .top-header-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+
+  .top-header-links a:hover {
+    color: var(--accent-color);
+  }
+
+  /* Mobile styles */
   @media (max-width: 768px) {
     .container {
       padding: 10px;
     }
 
     h1 {
-      font-size: 2rem;
+      font-size: 1.8rem;
+    }
+
+    .search-container {
+      flex-direction: column;
+      align-items: center;
     }
 
     #search-input {
-      width: 70%;
+      width: 100%;
+      margin-bottom: 10px;
+      border-radius: 4px;
+    }
+
+    #search-button {
+      width: 100%;
+      border-radius: 4px;
     }
 
     table {
@@ -314,12 +355,79 @@
     }
 
     th, td {
+      padding: 10px 5px;
+    }
+
+    .top-header-links li {
+      display: block;
+      margin: 10px 0;
+    }
+
+    .modal-content {
+      width: 95%;
+      margin: 5% auto;
+      padding: 20px;
+    }
+
+    /* Hide table headers on mobile */
+    thead {
+      display: none;
+    }
+
+    /* Display table rows as cards */
+    tr {
+      display: block;
+      margin-bottom: 15px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    td {
+      display: block;
+      text-align: right;
       padding: 10px;
+      position: relative;
+      padding-left: 50%;
+    }
+
+    td:before {
+      content: attr(data-label);
+      position: absolute;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    /* Adjust modal for mobile */
+    .modal-content {
+      padding: 15px;
+    }
+
+    #modal-school-name {
+      font-size: 1.5rem;
+    }
+
+    #modal-school-features,
+    #modal-school-teachers,
+    #modal-school-admission-rate {
+      font-size: 0.9rem;
     }
   }
 </style>
 </head>
 <body>
+<div class="top-header">
+  <ul class="top-header-links">
+    <li><a href="https://sites.google.com/view/ctttw/"><i class="fas fa-home"></i> 首頁</a></li>
+    <li><a href="https://ctttw.github.io/"><i class="fas fa-info-circle"></i> 落點分析系統</a></li>
+    <li><a href="https://ctttw.github.io/Navigation/"><i class="fas fa-envelope"></i> 更多資訊</a></li>
+  </ul>
+</div>
+
 <div class="loading-overlay" id="loading-overlay">
   <div class="loading-spinner"></div>
 </div>
@@ -407,11 +515,11 @@ function displaySchoolData(data) {
     row.className = 'animate__animated animate__fadeIn';
     row.style.animationDelay = `${index * 0.05}s`;
     row.innerHTML = `
-      <td>${school['序號']}</td>
-      <td>${school['錄取學校']}</td>
-      <td>${school['錄取科組']}</td>
-      <td>${school['超額比序總積分']}</td>
-      <td>${school['會考積點']}</td>
+      <td data-label="序號">${school['序號']}</td>
+      <td data-label="錄取學校">${school['錄取學校']}</td>
+      <td data-label="錄取科組">${school['錄取科組']}</td>
+      <td data-label="會考積分">${school['超額比序總積分']}</td>
+      <td data-label="會考積點">${school['會考積點']}</td>
     `;
     row.addEventListener('click', () => showSchoolDetails(school['錄取學校']));
   });
@@ -535,5 +643,68 @@ function eraseplaceholder() {
 }
 
 typeplaceholder();
+
+// Add touch support for mobile devices
+let touchStartX = 0;
+let touchEndX = 0;
+
+function checkSwipe() {
+  if (touchEndX < touchStartX) {
+    // Swipe left
+    console.log('Swiped left');
+  }
+  if (touchEndX > touchStartX) {
+    // Swipe right
+    console.log('Swiped right');
+  }
+}
+
+document.addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+document.addEventListener('touchend', e => {
+  touchEndX = e.changedTouches[0].screenX;
+  checkSwipe();
+});
+
+// Improve mobile navigation
+const topHeader = document.querySelector('.top-header');
+const mobileMenuBtn = document.createElement('button');
+mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+mobileMenuBtn.classList.add('mobile-menu-btn');
+topHeader.prepend(mobileMenuBtn);
+
+mobileMenuBtn.addEventListener('click', () => {
+  topHeader.classList.toggle('show-mobile-menu');
+});
+
+// Add this CSS for the mobile menu button
+const style = document.createElement('style');
+style.textContent = `
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-menu-btn {
+      display: block;
+    }
+
+    .top-header-links {
+      display: none;
+    }
+
+    .top-header.show-mobile-menu .top-header-links {
+      display: block;
+    }
+  }
+`;
+document.head.appendChild(style);
 </script>
 </body></html>
