@@ -1,14 +1,4 @@
-<html><head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="中投區會考錄取分數查詢，提供中投區會考生查詢使用">
-<meta name="keywords" content="中投區, 會考, 落點分析, 教育, 學校,臺中一中,臺中女中,興大附中,文華高中,臺中二中,惠文高中,東山高中,長億高中,私立明道高中,私立明德高中,臺中高工,臺中家商,興大附農">
-<meta name="author" content="中投區會考錄取分數">
-<title>CTTW落點分析查詢</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-<style>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="中投區會考錄取分數查詢，提供中投區會考生查詢使用"><meta name="keywords" content="中投區, 會考, 落點分析, 教育, 學校,臺中一中,臺中女中,興大附中,文華高中,臺中二中,惠文高中,東山高中,長亿高中,私立明道高中,私立明德高中,臺中高工,臺中家商,興大附農"><meta name="author" content="中投區會考錄取分數"><title>CTTW落點分析查詢</title><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"><style>
   :root {
     --primary-color: #4a90e2;
     --secondary-color: #34495e;
@@ -38,6 +28,7 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    padding-top: 60px;
   }
 
   header {
@@ -297,30 +288,109 @@
 
   /* Top header styles */
   .top-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 10px;
     background-color: var(--secondary-color);
-    padding: 10px 0;
-    text-align: center;
   }
 
-  .top-header-links {
-    list-style-type: none;
-    margin: 0;
+  .menu-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  .full-page-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(52, 73, 94, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 2000;
+  }
+
+  .full-page-nav.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-links {
+    list-style: none;
     padding: 0;
+    text-align: center;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
   }
 
-  .top-header-links li {
-    display: inline-block;
-    margin: 0 15px;
+  .full-page-nav.active .nav-links {
+    transform: translateY(0);
   }
 
-  .top-header-links a {
+  .nav-links li {
+    margin: 20px 0;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .full-page-nav.active .nav-links li {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav-links a {
     color: white;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 2rem;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+
+  .nav-links a:hover {
+    color: var(--accent-color);
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--accent-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .nav-links a:hover::after {
+    transform: scaleX(1);
+  }
+
+  .close-nav {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
     transition: color 0.3s ease;
   }
 
-  .top-header-links a:hover {
+  .close-nav:hover {
     color: var(--accent-color);
   }
 
@@ -417,15 +487,21 @@
       font-size: 0.9rem;
     }
   }
-</style>
-</head>
-<body>
+</style></head><body>
 <div class="top-header">
-  <ul class="top-header-links">
-    <li><a href="https://sites.google.com/view/ctttw/"><i class="fas fa-home"></i> 首頁</a></li>
-    <li><a href="https://ctttw.github.io/"><i class="fas fa-info-circle"></i> 落點分析系統</a></li>
-    <li><a href="https://ctttw.github.io/Navigation/"><i class="fas fa-envelope"></i> 更多資訊</a></li>
-  </ul>
+  <button id="menu-toggle" class="menu-toggle">
+    <i class="fas fa-bars"></i>
+  </button>
+  <nav id="full-page-nav" class="full-page-nav">
+    <button id="close-nav" class="close-nav">
+      <i class="fas fa-times"></i>
+    </button>
+    <ul class="nav-links">
+      <li><a href="https://sites.google.com/view/ctttw/"><i class="fas fa-home"></i> 首頁</a></li>
+      <li><a href="https://ctttw.github.io/"><i class="fas fa-info-circle"></i> 落點分析系統</a></li>
+      <li><a href="https://ctttw.github.io/Navigation/"><i class="fas fa-envelope"></i> 更多資訊</a></li>
+    </ul>
+  </nav>
 </div>
 
 <div class="loading-overlay" id="loading-overlay">
@@ -484,6 +560,9 @@ const modalSchoolTeachers = document.getElementById('modal-school-teachers');
 const modalSchoolAdmissionRate = document.getElementById('modal-school-admission-rate');
 const closeModal = document.getElementsByClassName('close')[0];
 const loadingOverlay = document.getElementById('loading-overlay');
+const menuToggle = document.getElementById('menu-toggle');
+const fullPageNav = document.getElementById('full-page-nav');
+const closeNav = document.getElementById('close-nav');
 
 let schoolData = [];
 
@@ -584,6 +663,30 @@ window.onclick = (event) => {
   }
 };
 
+menuToggle.addEventListener('click', () => {
+  fullPageNav.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  
+  document.querySelectorAll('.nav-links li').forEach((link, index) => {
+    setTimeout(() => {
+      link.style.opacity = '1';
+      link.style.transform = 'translateY(0)';
+    }, index * 100);
+  });
+});
+
+closeNav.addEventListener('click', () => {
+  fullPageNav.classList.remove('active');
+  document.body.style.overflow = 'auto';
+});
+
+fullPageNav.addEventListener('click', (e) => {
+  if (e.target === fullPageNav) {
+    fullPageNav.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+});
+
 fetchSchoolData();
 
 // Add smooth scrolling
@@ -668,68 +771,29 @@ document.addEventListener('touchend', e => {
   checkSwipe();
 });
 
-// Improve mobile navigation
-const topHeader = document.querySelector('.top-header');
-const mobileMenuBtn = document.createElement('button');
-mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-mobileMenuBtn.classList.add('mobile-menu-btn');
-topHeader.prepend(mobileMenuBtn);
-
-mobileMenuBtn.addEventListener('click', () => {
-  topHeader.classList.toggle('show-mobile-menu');
+// 防止複製
+document.addEventListener('copy', function(e) {
+  e.preventDefault();
+  return false;
 });
 
-// Add this CSS for the mobile menu button
-const style = document.createElement('style');
-style.textContent = `
-  .mobile-menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
+// 防止截圖 (僅適用於部分瀏覽器)
+document.addEventListener('keyup', function(e) {
+  if (e.key == 'PrintScreen') {
+    navigator.clipboard.writeText('');
+    alert('截圖功能已被禁用');
   }
+});
 
-  @media (max-width: 768px) {
-    .mobile-menu-btn {
-      display: block;
-    }
+// 防止右鍵點擊
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+});
 
-    .top-header-links {
-      display: none;
-    }
-
-    .top-header.show-mobile-menu .top-header-links {
-      display: block;
-    }
-  }
-`;
-document.head.appendChild(style);
-
-              // 防止複製
-        document.addEventListener('copy', function(e) {
-        e.preventDefault();
-        return false;
-      });
-  
-      // 防止截圖 (僅適用於部分瀏覽器)
-      document.addEventListener('keyup', function(e) {
-        if (e.key == 'PrintScreen') {
-          navigator.clipboard.writeText('');
-          alert('截圖功能已被禁用');
-        }
-      });
-  
-      // 防止右鍵點擊
-      document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-      });
-  
-      // 防止拖曳選擇文字
-      document.onselectstart = function() {
-        return false;
-      };
+// 防止拖曳選擇文字
+document.onselectstart = function() {
+  return false;
+};
 
 </script>
 </body></html>
