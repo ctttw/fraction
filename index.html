@@ -1,10 +1,20 @@
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="中投區會考錄取分數查詢，提供中投區會考生查詢使用"><meta name="keywords" content="中投區, 會考, 落點分析, 教育, 學校,臺中一中,臺中女中,興大附中,文華高中,臺中二中,惠文高中,東山高中,長亿高中,私立明道高中,私立明德高中,臺中高工,臺中家商,興大附農"><meta name="author" content="中投區會考錄取分數"><title>CTTW落點分析查詢</title><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"><style>
+<html><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="中投區會考錄取分數查詢，提供中投區會考生查詢使用">
+<meta name="keywords" content="中投區, 會考, 落點分析, 教育, 學校,臺中一中,臺中女中,興大附中,文華高中,臺中二中,惠文高中,東山高中,長亿高中,私立明道高中,私立明德高中,臺中高工,臺中家商,興大附農">
+<meta name="author" content="中投區會考錄取分數">
+<title>CTTW落點分析查詢</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<style>
   :root {
-    --primary-color: #4a90e2;
-    --secondary-color: #34495e;
-    --background-color: #f5f7fa;
-    --text-color: #333;
-    --accent-color: #e67e22;
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --background-color: #ecf0f1;
+    --text-color: #34495e;
+    --accent-color: #e74c3c;
   }
 
   * {
@@ -35,8 +45,8 @@
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
     text-align: center;
-    padding: 2rem;
-    margin-bottom: 2rem;
+    padding: 3rem;
+    margin-bottom: 3rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
     overflow: hidden;
@@ -68,41 +78,39 @@
     }
   }
 
-  h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    position: relative;
-    z-index: 1;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Noto Serif TC', serif;
   }
 
   .search-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
   }
 
   #search-input {
-    width: 60%;
-    padding: 0.8rem;
-    font-size: 1rem;
-    border: 2px solid var(--primary-color);
-    border-radius: 4px 0 0 4px;
+    width: 70%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 50px 0 0 50px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
   }
 
   #search-input:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
   }
 
   #search-button {
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
     background-color: var(--primary-color);
     color: white;
     border: none;
-    border-radius: 0 4px 4px 0;
+    border-radius: 0 50px 50px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
@@ -130,7 +138,7 @@
   }
 
   #search-button:hover {
-    background-color: #3a7cbd;
+    background-color: #2980b9;
     transform: translateY(-2px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
@@ -140,15 +148,14 @@
     border-collapse: separate;
     border-spacing: 0;
     background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    border-radius: 15px;
     overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
   }
 
   th, td {
-    padding: 15px;
-    text-align: left;
+    padding: 1rem;
   }
 
   th {
@@ -156,16 +163,20 @@
     color: white;
     font-weight: bold;
     text-transform: uppercase;
+    padding: 1.2rem;
+  }
+
+  td {
+    padding: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  tr:hover td {
+    background-color: rgba(52, 152, 219, 0.1);
   }
 
   tr:nth-child(even) {
     background-color: #f8f9fa;
-  }
-
-  tr:hover {
-    background-color: #e9ecef;
-    transform: scale(1.02);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .modal {
@@ -188,8 +199,8 @@
     border: 1px solid #888;
     width: 80%;
     max-width: 600px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     transform: scale(0.7);
     opacity: 0;
     transition: all 0.3s ease;
@@ -217,11 +228,11 @@
 
   footer {
     text-align: center;
-    margin-top: 2rem;
-    padding: 1rem;
+    margin-top: 3rem;
+    padding: 2rem;
     background-color: var(--secondary-color);
     color: white;
-    border-radius: 8px;
+    border-radius: 15px;
     position: relative;
     overflow: hidden;
   }
@@ -339,7 +350,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(52, 73, 94, 0.95);
+    background-color: rgba(44, 62, 80, 0.95);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -516,7 +527,9 @@
       font-size: 0.9rem;
     }
   }
-</style></head><body>
+</style>
+</head>
+<body>
 <div class="top-header">
   <button id="menu-toggle" class="menu-toggle">
     <i class="fas fa-bars"></i>
@@ -526,8 +539,8 @@
       <i class="fas fa-times"></i>
     </button>
     <ul class="nav-links">
-      <li><a href="https://sites.google.com/view/ctttw/"><i class="fas fa-home"></i> 首頁</a></li>
-      <li><a href="https://ctttw.github.io/"><i class="fas fa-info-circle"></i> 落點分析系統</a></li>
+      <li><a href="https://sites.google.com/view/ctttw/"><i class="fas fa-home"></i> 回到首頁</a></li>
+      <li><a href="https://ctttw.github.io/"><i class="fas fa-info-circle"></i> 落點分析</a></li>
       <li><a href="https://ctttw.github.io/Navigation/"><i class="fas fa-envelope"></i> 更多資訊</a></li>
     </ul>
   </nav>
@@ -539,7 +552,7 @@
 
 <div class="container">
   <header class="animate__animated animate__fadeIn">
-    <h1><i class="fas fa-graduation-cap icon"></i>中投區高中錄取分數查詢</h1>
+    <h1><i class="fas fa-graduation-cap icon"></i>中投區高中錄取分數</h1>
     <p><i class="fas fa-search icon"></i>供您參考中投區各校落點</p>
   </header>
 
