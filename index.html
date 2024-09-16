@@ -78,6 +78,15 @@
     }
   }
 
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Noto Serif TC', serif;
   }
@@ -254,16 +263,6 @@
     animation: shine 20s linear infinite;
   }
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .fade-in {
-    animation: fadeIn 0.5s ease-out;
-  }
-
-  /* Loading Animation */
   .loading-overlay {
     position: fixed;
     top: 0;
@@ -291,7 +290,6 @@
     100% { transform: rotate(360deg); }
   }
 
-  /* Icon styles */
   .icon {
     margin-right: 10px;
     color: var(--accent-color);
@@ -325,7 +323,6 @@
     }
   }
 
-  /* Top header styles */
   .top-header {
     position: fixed;
     top: 0;
@@ -434,7 +431,6 @@
     color: var(--accent-color);
   }
 
-  /* Mobile styles */
   @media (max-width: 768px) {
     .container {
       padding: 10px;
@@ -479,12 +475,10 @@
       padding: 20px;
     }
 
-    /* Hide table headers on mobile */
     thead {
       display: none;
     }
 
-    /* Display table rows as cards */
     tr {
       display: block;
       margin-bottom: 15px;
@@ -512,7 +506,6 @@
       text-align: left;
     }
 
-    /* Adjust modal for mobile */
     .modal-content {
       padding: 15px;
     }
@@ -552,7 +545,7 @@
 
 <div class="container">
   <header class="animate__animated animate__fadeIn">
-    <h1><i class="fas fa-graduation-cap icon"></i>中投區高中錄取分數</h1>
+    <h1><i class="fas fa-graduation-cap icon"></i>中投區高中錄取分數查詢</h1>
     <p><i class="fas fa-search icon"></i>供您參考中投區各校落點</p>
   </header>
 
@@ -731,7 +724,6 @@ fullPageNav.addEventListener('click', (e) => {
 
 fetchSchoolData();
 
-// Add smooth scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
@@ -741,14 +733,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// Add parallax effect to header
 window.addEventListener('scroll', () => {
   const header = document.querySelector('header');
   const scrollPosition = window.pageYOffset;
   header.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
 });
 
-// Add hover effect to table rows
 const tableRows = document.querySelectorAll('table tr');
 tableRows.forEach(row => {
   row.addEventListener('mouseenter', () => {
@@ -761,7 +751,6 @@ tableRows.forEach(row => {
   });
 });
 
-// Add typing effect to search input placeholder
 const placeholders = ['輸入學校名稱...', '輸入錄取科組...', '探索您的未來...'];
 let placeholderIndex = 0;
 let charIndex = 0;
@@ -789,17 +778,14 @@ function eraseplaceholder() {
 
 typeplaceholder();
 
-// Add touch support for mobile devices
 let touchStartX = 0;
 let touchEndX = 0;
 
 function checkSwipe() {
   if (touchEndX < touchStartX) {
-    // Swipe left
     console.log('Swiped left');
   }
   if (touchEndX > touchStartX) {
-    // Swipe right
     console.log('Swiped right');
   }
 }
@@ -813,13 +799,11 @@ document.addEventListener('touchend', e => {
   checkSwipe();
 });
 
-// 防止複製
 document.addEventListener('copy', function(e) {
   e.preventDefault();
   return false;
 });
 
-// 防止截圖 (僅適用於部分瀏覽器)
 document.addEventListener('keyup', function(e) {
   if (e.key == 'PrintScreen') {
     navigator.clipboard.writeText('');
@@ -827,15 +811,12 @@ document.addEventListener('keyup', function(e) {
   }
 });
 
-// 防止右鍵點擊
 document.addEventListener('contextmenu', function(e) {
   e.preventDefault();
 });
 
-// 防止拖曳選擇文字
 document.onselectstart = function() {
   return false;
 };
-
 </script>
 </body></html>
