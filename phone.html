@@ -1,11 +1,11 @@
-<html><head><base href="https://websimgpt.com/">
+<html><head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="description" content="中投區會考錄取分數查詢，提供中投區會考生查詢使用">
-<meta name="keywords" content="中投區, 會考, 落點分析, 教育, 學校,臺中一中,臺中女中,興大附中,文華高中,臺中二中,惠文高中,東山高中,長億高中,私立明道高中,私立明德高中,臺中高工,臺中家商,興大附農">
+<meta name="keywords" content="中投區, 會考, 落點分析, 教育, 學校,臺中一中,臺中女中,興大附中,文華高中,臺中二中,惠文高中,東山高中,長亿高中,私立明道高中,私立明德高中,臺中高工,臺中家商,興大附農">
 <meta name="author" content="中投區會考錄取分數">
 <title>CTTW落點分析查詢</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 <style>
@@ -13,11 +13,8 @@
     --primary-color: #4a90e2;
     --secondary-color: #34495e;
     --background-color: #f5f7fa;
-    --text-color: #333;
-    --accent-color: #e67e22;
-    --success-color: #2ecc71;
-    --warning-color: #f39c12;
-    --error-color: #e74c3c;
+    --text-color: #2c3e50;
+    --accent-color: #e74c3c;
   }
 
   * {
@@ -27,32 +24,33 @@
   }
 
   body {
-    font-family: 'Noto Sans TC', 'Poppins', sans-serif;
+    font-family: 'Noto Sans TC', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background-color);
     background-image: 
-      radial-gradient(circle at 100% 50%, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.2) 10%, transparent 10%),
-      radial-gradient(circle at 0% 50%, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.2) 10%, transparent 10%);
-    background-size: 20px 20px;
+      radial-gradient(circle at 100% 50%, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.5) 10%, transparent 10%),
+      radial-gradient(circle at 0% 50%, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.5) 10%, transparent 10%);
+    background-size: 30px 30px;
   }
 
   .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    padding-top: 60px;
   }
 
   header {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
     text-align: center;
-    padding: 3rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 4rem 2rem;
+    margin-bottom: 4rem;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 50px 50px;
     position: relative;
     overflow: hidden;
-    border-radius: 0 0 50% 50% / 20px;
   }
 
   header::before {
@@ -69,44 +67,41 @@
       rgba(255, 255, 255, 0.1) 10px,
       rgba(255, 255, 255, 0.1) 20px
     );
-    animation: shine 20s linear infinite;
   }
 
-  @keyframes shine {
-    0% {
-      transform: translateX(-50%) translateY(-50%) rotate(0deg);
-    }
-    100% {
-      transform: translateX(-50%) translateY(-50%) rotate(360deg);
-    }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Noto Serif TC', serif;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
   }
 
   h1 {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    position: relative;
-    z-index: 1;
-    font-family: 'Poppins', sans-serif;
-    letter-spacing: 2px;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
   }
 
   .search-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 2rem;
-    position: relative;
-    z-index: 2;
+    margin-bottom: 4rem;
   }
 
   #search-input {
-    width: 60%;
-    padding: 1rem;
-    font-size: 1rem;
-    border: 2px solid var(--primary-color);
+    width: 75%;
+    padding: 1.2rem 1.5rem;
+    font-size: 1.2rem;
+    border: none;
     border-radius: 50px 0 0 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
 
   #search-input:focus {
@@ -115,17 +110,17 @@
   }
 
   #search-button {
-    padding: 1rem 2rem;
-    font-size: 1rem;
+    padding: 1.2rem 1.5rem;
+    font-size: 1.2rem;
     background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 0 50px 50px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
 
   #search-button::before {
@@ -141,67 +136,54 @@
       rgba(255, 255, 255, 0.3),
       transparent
     );
-    transition: all 0.5s;
-  }
-
-  #search-button:hover::before {
-    left: 100%;
   }
 
   #search-button:hover {
-    background-color: #3a7cbd;
+    background-color: #2980b9;
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   table {
     width: 100%;
     border-collapse: separate;
-    border-spacing: 0 15px;
-    background-color: transparent;
-    margin-bottom: 2rem;
+    border-spacing: 0;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
   }
 
   th, td {
-    padding: 15px;
-    text-align: left;
+    padding: 1rem;
   }
 
   th {
     background-color: var(--secondary-color);
     color: white;
-    font-weight: bold;
+    font-size: 1.1rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    border-radius: 10px 10px 0 0;
   }
 
-  tbody tr {
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+  td {
+    padding: 1rem;
     transition: all 0.3s ease;
   }
 
-  tbody tr:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  tr:hover td {
+    background-color: rgba(74, 144, 226, 0.1);
   }
 
-  td:first-child {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-  }
-
-  td:last-child {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+  tr:nth-child(even) {
+    background-color: #f8f9fa;
   }
 
   .modal {
     display: none;
     position: fixed;
-    z-index: 1000;
+    z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
@@ -219,7 +201,7 @@
     width: 80%;
     max-width: 600px;
     border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     transform: scale(0.7);
     opacity: 0;
     transition: all 0.3s ease;
@@ -247,13 +229,11 @@
 
   footer {
     text-align: center;
-    margin-top: 2rem;
-    padding: 2rem;
+    margin-top: 4rem;
+    padding: 3rem;
     background-color: var(--secondary-color);
     color: white;
-    border-radius: 20px 20px 0 0;
-    position: relative;
-    overflow: hidden;
+    border-radius: 50px 50px 0 0;
   }
 
   footer::before {
@@ -270,16 +250,6 @@
       rgba(255, 255, 255, 0.1) 10px,
       rgba(255, 255, 255, 0.1) 20px
     );
-    animation: shine 20s linear infinite;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .fade-in {
-    animation: fadeIn 0.5s ease-out;
   }
 
   .loading-overlay {
@@ -312,59 +282,147 @@
   .icon {
     margin-right: 10px;
     color: var(--accent-color);
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
   }
 
   .top-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 10px;
     background-color: var(--secondary-color);
-    padding: 10px 0;
-    text-align: center;
   }
 
-  .top-header-links {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+  .menu-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  .full-page-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(44, 62, 80, 0.95);
     display: flex;
     justify-content: center;
     align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 2000;
+    backdrop-filter: blur(5px);
   }
 
-  .top-header-links li {
-    margin: 0 15px;
+  .full-page-nav.active {
+    opacity: 1;
+    visibility: visible;
   }
 
-  .top-header-links a {
+  .nav-links {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+  }
+
+  .full-page-nav.active .nav-links {
+    transform: translateY(0);
+  }
+
+  .nav-links li {
+    margin: 20px 0;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .full-page-nav.active .nav-links li {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav-links a {
     color: white;
     text-decoration: none;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    padding: 5px 10px;
-    border-radius: 15px;
+    font-size: 2rem;
+    transition: color 0.3s ease;
+    position: relative;
   }
 
-  .top-header-links a:hover {
+  .nav-links a:hover {
     color: var(--accent-color);
-    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--accent-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .nav-links a:hover::after {
+    transform: scaleX(1);
+  }
+
+  .close-nav {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .close-nav:hover {
+    color: var(--accent-color);
   }
 
   @media (max-width: 768px) {
+    body {
+      font-size: 14px;
+    }
+
     .container {
-      padding: 10px;
+      padding: 10px 5px;
+    }
+
+    header {
+      padding: 1.5rem 1rem;
     }
 
     h1 {
-      font-size: 2rem;
+      font-size: 1.6rem;
     }
 
     .search-container {
-      flex-direction: column;
-      align-items: center;
+      margin-bottom: 1.5rem;
     }
 
     #search-input, #search-button {
-      width: 100%;
-      border-radius: 50px;
-      margin-bottom: 10px;
+      font-size: 0.9rem;
+      padding: 0.7rem 0.9rem;
     }
 
     table {
@@ -372,142 +430,141 @@
     }
 
     th, td {
-      padding: 10px 5px;
-    }
-
-    .top-header-links {
-      flex-direction: column;
-    }
-
-    .top-header-links li {
-      margin: 5px 0;
+      padding: 0.8rem 0.5rem;
     }
 
     .modal-content {
-      width: 95%;
-      margin: 5% auto;
-      padding: 20px;
-    }
-
-    thead {
-      display: none;
-    }
-
-    tbody tr {
-      display: block;
-      margin-bottom: 15px;
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    td {
-      display: block;
-      text-align: right;
-      padding: 10px;
-      position: relative;
-      padding-left: 50%;
-    }
-
-    td:before {
-      content: attr(data-label);
-      position: absolute;
-      left: 6px;
-      width: 45%;
-      padding-right: 10px;
-      white-space: nowrap;
-      font-weight: bold;
-      text-align: left;
-    }
-
-    .modal-content {
-      padding: 15px;
+      width: 90%;
+      margin: 10% auto;
+      padding: 15px 10px;
     }
 
     #modal-school-name {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
     }
 
     #modal-school-features,
     #modal-school-teachers,
     #modal-school-admission-rate {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+    }
+
+    .nav-links a {
+      font-size: 1.3rem;
+    }
+
+    .back-to-top {
+      width: 35px;
+      height: 35px;
+      font-size: 14px;
+      bottom: 15px;
+      right: 15px;
     }
   }
 
-  .feature-box {
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+  @media (max-width: 320px) {
+    body {
+      font-size: 12px;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+    }
+
+    .search-container {
+      margin-bottom: 1rem;
+    }
+
+    #search-input, #search-button {
+      font-size: 0.8rem;
+      padding: 0.6rem 0.8rem;
+    }
+
+    table {
+      font-size: 0.8rem;
+    }
+
+    th, td {
+      padding: 0.6rem 0.4rem;
+    }
   }
 
-  .feature-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  .decorative-element {
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: 50%;
+    opacity: 0.1;
+    z-index: -1;
   }
 
-  .feature-box h3 {
-    color: var(--primary-color);
-    margin-bottom: 10px;
+  .top-left {
+    top: -100px;
+    left: -100px;
   }
 
-  .feature-box p {
-    color: var(--text-color);
+  .bottom-right {
+    bottom: -100px;
+    right: -100px;
   }
 
-  .stats-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin-top: 2rem;
+  @media (max-width: 768px) {
+    .decorative-element {
+      width: 100px;
+      height: 100px;
+    }
   }
 
-  .stat-box {
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 10px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    flex: 1;
-    min-width: 200px;
-    transition: all 0.3s ease;
+  .back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   }
 
-  .stat-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  .back-to-top:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
   }
 
-  .stat-number {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: var(--primary-color);
-    margin-bottom: 10px;
+  .back-to-top.show {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
   }
 
-  .stat-label {
-    font-size: 1rem;
-    color: var(--text-color);
-  }
-
-  #chart-container {
-    width: 100%;
-    height: 400px;
-    margin-top: 2rem;
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 </style>
 </head>
 <body>
 <div class="top-header">
-  <ul class="top-header-links">
-     <li><a href="https://sites.google.com/view/ctttw/"><i class="fas fa-home"></i> 首頁</a></li>
-    <li><a href="https://ctttw.github.io/"><i class="fas fa-info-circle"></i> 落點分析系統</a></li>
-    <li><a href="https://ctttw.github.io/Navigation/"><i class="fas fa-envelope"></i> 更多資訊</a></li>
-  </ul>
+  <button id="menu-toggle" class="menu-toggle">
+    <i class="fas fa-bars"></i>
+  </button>
+  <nav id="full-page-nav" class="full-page-nav">
+    <button id="close-nav" class="close-nav">
+      <i class="fas fa-times"></i>
+    </button>
+    <ul class="nav-links">
+      <li><a href="https://sites.google.com/view/ctttw/"><i class="fas fa-home"></i> 回到首頁</a></li>
+      <li><a href="https://ctttw.github.io/"><i class="fas fa-info-circle"></i> 落點分析</a></li>
+      <li><a href="https://ctttw.github.io/Navigation/"><i class="fas fa-envelope"></i> 更多資訊</a></li>
+    </ul>
+  </nav>
 </div>
 
 <div class="loading-overlay" id="loading-overlay">
@@ -517,35 +574,13 @@
 <div class="container">
   <header class="animate__animated animate__fadeIn">
     <h1><i class="fas fa-graduation-cap icon"></i>中投區高中錄取分數查詢</h1>
-    <p><i class="fas fa-search icon"></i>探索您的未來，找到最適合您的學校</p>
+    <p><i class="fas fa-search icon"></i>供您參考中投區各校落點</p>
   </header>
 
   <div class="search-container animate__animated animate__fadeInUp">
     <input type="text" id="search-input" placeholder="輸入學校名稱或錄取科組...">
     <button id="search-button"><i class="fas fa-search"></i> 搜尋</button>
   </div>
-
-  <div class="feature-box animate__animated animate__fadeIn">
-    <h3><i class="fas fa-chart-line icon"></i>最新統計資料</h3>
-    <p>根據最新統計，今年的會考成績整體表現有所提升。查看詳細分析，了解您在競爭中的位置。</p>
-  </div>
-
-  <div class="stats-container">
-    <div class="stat-box animate__animated animate__fadeIn">
-      <div class="stat-number" id="total-schools">0</div>
-      <div class="stat-label">參與學校總數</div>
-    </div>
-    <div class="stat-box animate__animated animate__fadeIn">
-      <div class="stat-number" id="avg-score">0</div>
-      <div class="stat-label">平均錄取分數</div>
-    </div>
-    <div class="stat-box animate__animated animate__fadeIn">
-      <div class="stat-number" id="highest-score">0</div>
-      <div class="stat-label">最高錄取分數</div>
-    </div>
-  </div>
-
-  <div id="chart-container"></div>
 
   <table id="school-table" class="animate__animated animate__fadeIn">
     <thead>
@@ -575,8 +610,14 @@
   </footer>
 </div>
 
+<button id="back-to-top" class="back-to-top" title="回到頂部">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<div class="decorative-element top-left"></div>
+<div class="decorative-element bottom-right"></div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 const API_URL = 'https://script.google.com/macros/s/AKfycbx4GQzWHFfybRLuW17tICfxNxN8kJLM9nh7GfahSG9ZPXJOtLM3AeGG8wueaFXnsl-m/exec';
 const schoolTable = document.getElementById('school-table').getElementsByTagName('tbody')[0];
@@ -589,12 +630,12 @@ const modalSchoolTeachers = document.getElementById('modal-school-teachers');
 const modalSchoolAdmissionRate = document.getElementById('modal-school-admission-rate');
 const closeModal = document.getElementsByClassName('close')[0];
 const loadingOverlay = document.getElementById('loading-overlay');
-const totalSchoolsElement = document.getElementById('total-schools');
-const avgScoreElement = document.getElementById('avg-score');
-const highestScoreElement = document.getElementById('highest-score');
+const menuToggle = document.getElementById('menu-toggle');
+const fullPageNav = document.getElementById('full-page-nav');
+const closeNav = document.getElementById('close-nav');
+const backToTopButton = document.getElementById('back-to-top');
 
 let schoolData = [];
-let chart;
 
 function showLoading() {
   loadingOverlay.style.display = 'flex';
@@ -610,8 +651,6 @@ async function fetchSchoolData() {
     const response = await axios.get(`${API_URL}?action=getData`);
     schoolData = response.data;
     displaySchoolData(schoolData);
-    updateStats(schoolData);
-    createChart(schoolData);
   } catch (error) {
     console.error('Error fetching school data:', error);
   } finally {
@@ -652,6 +691,12 @@ async function showSchoolDetails(schoolName) {
       modal.classList.add('show');
     }, 10);
     document.body.style.overflow = 'hidden';
+
+    if (window.innerWidth <= 768) {
+      modal.style.paddingTop = '10px';
+      document.querySelector('.modal-content').style.maxHeight = '90vh';
+      document.querySelector('.modal-content').style.overflowY = 'auto';
+    }
   } catch (error) {
     console.error('Error fetching school details:', error);
   } finally {
@@ -668,89 +713,6 @@ function searchSchools() {
   );
   displaySchoolData(filteredSchools);
   hideLoading();
-}
-
-function updateStats(data) {
-  const totalSchools = new Set(data.map(school => school['錄取學校'])).size;
-  const avgScore = Math.round(data.reduce((sum, school) => sum + parseFloat(school['超額比序總積分']), 0) / data.length);
-  const highestScore = Math.max(...data.map(school => parseFloat(school['超額比序總積分'])));
-
-  animateNumber(totalSchoolsElement, 0, totalSchools, 2000);
-  animateNumber(avgScoreElement, 0, avgScore, 2000);
-  animateNumber(highestScoreElement, 0, highestScore, 2000);
-}
-
-function animateNumber(element, start, end, duration) {
-  let current = start;
-  const range = end - start;
-  const increment = end > start ? 1 : -1;
-  const stepTime = Math.abs(Math.floor(duration / range));
-  const timer = setInterval(() => {
-    current += increment;
-    element.textContent = current;
-    if (current == end) {
-      clearInterval(timer);
-    }
-  }, stepTime);
-}
-
-function createChart(data) {
-  const ctx = document.getElementById('chart-container').getContext('2d');
-  const schoolCounts = {};
-  data.forEach(school => {
-    schoolCounts[school['錄取學校']] = (schoolCounts[school['錄取學校']] || 0) + 1;
-  });
-
-  const sortedSchools = Object.entries(schoolCounts)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 10);
-
-  const chartData = {
-    labels: sortedSchools.map(school => school[0]),
-    datasets: [{
-      label: '錄取人數',
-      data: sortedSchools.map(school => school[1]),
-      backgroundColor: 'rgba(74, 144, 226, 0.7)',
-      borderColor: 'rgba(74, 144, 226, 1)',
-      borderWidth: 1
-    }]
-  };
-
-  if (chart) {
-    chart.destroy();
-  }
-
-  chart = new Chart(ctx, {
-    type: 'bar',
-    data: chartData,
-    options: {
-      responsive: true,
-      scales: {
-        y: {
-          beginAtZero: true,
-          title: {
-            display: true,
-            text: '錄取人數'
-          }
-        },
-        x: {
-          title: {
-            display: true,
-            text: '學校'
-          }
-        }
-      },
-      plugins: {
-        legend: {
-          display: false
-        },
-        title: {
-          display: true,
-          text: '前10名學校錄取人數統計'
-        }
-      }
-    }
-  });
 }
 
 searchButton.addEventListener('click', searchSchools);
@@ -778,7 +740,48 @@ window.onclick = (event) => {
   }
 };
 
+menuToggle.addEventListener('click', () => {
+  fullPageNav.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  
+  document.querySelectorAll('.nav-links li').forEach((link, index) => {
+    setTimeout(() => {
+      link.style.opacity = '1';
+      link.style.transform = 'translateY(0)';
+    }, index * 100);
+  });
+});
+
+closeNav.addEventListener('click', () => {
+  fullPageNav.classList.remove('active');
+  document.body.style.overflow = 'auto';
+});
+
+fullPageNav.addEventListener('click', (e) => {
+  if (e.target === fullPageNav) {
+    fullPageNav.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+});
+
 fetchSchoolData();
+
+window.addEventListener('scroll', () => {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  if (scrollTop > 300) {
+    backToTopButton.classList.add('show');
+  } else {
+    backToTopButton.classList.remove('show');
+  }
+});
+
+backToTopButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
@@ -855,66 +858,24 @@ document.addEventListener('touchend', e => {
   checkSwipe();
 });
 
-const topHeader = document.querySelector('.top-header');
-const mobileMenuBtn = document.createElement('button');
-mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-mobileMenuBtn.classList.add('mobile-menu-btn');
-topHeader.prepend(mobileMenuBtn);
-
-mobileMenuBtn.addEventListener('click', () => {
-  topHeader.classList.toggle('show-mobile-menu');
+document.addEventListener('copy', function(e) {
+  e.preventDefault();
+  return false;
 });
 
-// Add this CSS for the mobile menu button
-const style = document.createElement('style');
-style.textContent = `
-  .mobile-menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
+document.addEventListener('keyup', function(e) {
+  if (e.key == 'PrintScreen') {
+    navigator.clipboard.writeText('');
+    alert('截圖功能已被禁用');
   }
+});
 
-  @media (max-width: 768px) {
-    .mobile-menu-btn {
-      display: block;
-    }
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+});
 
-    .top-header-links {
-      display: none;
-    }
-
-    .top-header.show-mobile-menu .top-header-links {
-      display: block;
-    }
-  }
-`;
-document.head.appendChild(style);
-              // 防止複製
-        document.addEventListener('copy', function(e) {
-        e.preventDefault();
-        return false;
-      });
-  
-      // 防止截圖 (僅適用於部分瀏覽器)
-      document.addEventListener('keyup', function(e) {
-        if (e.key == 'PrintScreen') {
-          navigator.clipboard.writeText('');
-          alert('截圖功能已被禁用');
-        }
-      });
-  
-      // 防止右鍵點擊
-      document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-      });
-  
-      // 防止拖曳選擇文字
-      document.onselectstart = function() {
-        return false;
-      };
-
+document.onselectstart = function() {
+  return false;
+};
 </script>
 </body></html>
