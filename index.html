@@ -416,6 +416,10 @@
   }
 
   @media (max-width: 768px) {
+    body {
+      font-size: 16px;
+    }
+
     .container {
       padding: 10px;
     }
@@ -438,50 +442,17 @@
       width: 100%;
       border-radius: 25px;
       margin-bottom: 10px;
+      font-size: 1rem;
+      padding: 0.8rem 1rem;
     }
 
     #search-button {
       margin-left: 0;
     }
 
-    table, thead, tbody, th, td, tr {
-      display: block;
-    }
-
-    thead tr {
-      position: absolute;
-      top: -9999px;
-      left: -9999px;
-    }
-
-    tr {
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    td {
-      border: none;
-      position: relative;
-      padding-left: 50%;
-      text-align: right;
-    }
-
-    td:before {
-      content: attr(data-label);
-      position: absolute;
-      left: 6px;
-      width: 45%;
-      padding-right: 10px;
-      white-space: nowrap;
-      font-weight: bold;
-      text-align: left;
-    }
-
     .modal-content {
       width: 95%;
-      margin: 10% auto;
+      margin: 5% auto;
       padding: 15px;
     }
 
@@ -501,6 +472,14 @@
 
     .nav-links a {
       font-size: 1.5rem;
+    }
+
+    .back-to-top {
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+      bottom: 10px;
+      right: 10px;
     }
   }
 
@@ -709,8 +688,8 @@ async function showSchoolDetails(schoolName) {
 
     if (window.innerWidth <= 768) {
       modal.style.paddingTop = '10px';
-      modalContent.style.maxHeight = '80vh';
-      modalContent.style.overflowY = 'auto';
+      document.querySelector('.modal-content').style.maxHeight = '90vh';
+      document.querySelector('.modal-content').style.overflowY = 'auto';
     }
   } catch (error) {
     console.error('Error fetching school details:', error);
@@ -790,7 +769,8 @@ window.addEventListener('scroll', () => {
   }
 });
 
-backToTopButton.addEventListener('click', () => {
+backToTopButton.addEventListener('click', (e) => {
+  e.preventDefault();
   window.scrollTo({
     top: 0,
     behavior: 'smooth'
