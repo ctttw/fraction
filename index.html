@@ -1,6 +1,6 @@
 <html><head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="description" content="中投區會考錄取分數查詢，提供中投區會考生查詢使用">
 <meta name="keywords" content="中投區, 會考, 落點分析, 教育, 學校,臺中一中,臺中女中,興大附中,文華高中,臺中二中,惠文高中,東山高中,長亿高中,私立明道高中,私立明德高中,臺中高工,臺中家商,興大附農">
 <meta name="author" content="中投區會考錄取分數">
@@ -417,69 +417,91 @@
 
   @media (max-width: 768px) {
     body {
-      font-size: 16px;
+      font-size: 14px;
     }
 
     .container {
-      padding: 10px;
+      padding: 10px 5px;
     }
 
     header {
-      padding: 2rem 1rem;
+      padding: 1.5rem 1rem;
     }
 
     h1 {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
     }
 
     .search-container {
-      flex-direction: column;
-      align-items: stretch;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
 
     #search-input, #search-button {
-      width: 100%;
-      border-radius: 25px;
-      margin-bottom: 10px;
-      font-size: 1rem;
-      padding: 0.8rem 1rem;
+      font-size: 0.9rem;
+      padding: 0.7rem 0.9rem;
     }
 
-    #search-button {
-      margin-left: 0;
+    table {
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 0.8rem 0.5rem;
     }
 
     .modal-content {
-      width: 95%;
-      margin: 5% auto;
-      padding: 15px;
+      width: 90%;
+      margin: 10% auto;
+      padding: 15px 10px;
     }
 
     #modal-school-name {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
     }
 
     #modal-school-features,
     #modal-school-teachers,
     #modal-school-admission-rate {
-      font-size: 0.9rem;
-    }
-
-    .full-page-nav {
-      padding: 20px;
+      font-size: 0.85rem;
     }
 
     .nav-links a {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
     }
 
     .back-to-top {
-      width: 40px;
-      height: 40px;
-      font-size: 16px;
-      bottom: 10px;
-      right: 10px;
+      width: 35px;
+      height: 35px;
+      font-size: 14px;
+      bottom: 15px;
+      right: 15px;
+    }
+  }
+
+  @media (max-width: 320px) {
+    body {
+      font-size: 12px;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+    }
+
+    .search-container {
+      margin-bottom: 1rem;
+    }
+
+    #search-input, #search-button {
+      font-size: 0.8rem;
+      padding: 0.6rem 0.8rem;
+    }
+
+    table {
+      font-size: 0.8rem;
+    }
+
+    th, td {
+      padding: 0.6rem 0.4rem;
     }
   }
 
@@ -837,11 +859,9 @@ let touchEndX = 0;
 function checkSwipe() {
   if (touchEndX < touchStartX) {
     console.log('Swiped left');
-    // Add functionality for left swipe if needed
   }
   if (touchEndX > touchStartX) {
     console.log('Swiped right');
-    // Add functionality for right swipe if needed
   }
 }
 
