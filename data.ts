@@ -1,0 +1,60 @@
+
+export interface SchoolInfo {
+  system: string;
+  name: string;
+  address: string;
+  url: string;
+}
+
+export const schoolDirectory: SchoolInfo[] = [
+  { system: "高職", name: "財團法人光華高工", address: "[404]臺中市北區進化路515號", url: "http://www.khvs.tc.edu.tw" },
+  { system: "高職", name: "國立大甲高工", address: "[437]臺中市大甲區頂店里開元路71號", url: "http://www.tcvs.tc.edu.tw" },
+  { system: "高職", name: "國立沙鹿高工", address: "[433]臺中市沙鹿區中棲路303號", url: "http://www.slvs.tc.edu.tw" },
+  { system: "高職", name: "國立東勢高工", address: "[423]臺中市東勢區東關路646號", url: "http://www.tsvs.tc.edu.tw" },
+  { system: "高職", name: "國立臺中家商", address: "[401]臺中市東區和平街50號", url: "http://www.tchcvs.tc.edu.tw" },
+  { system: "高職", name: "國立臺中高工", address: "[402]臺中市南區高工路191號", url: "http://www.tcivs.tc.edu.tw" },
+  { system: "高職", name: "國立興大附農", address: "[401]臺中市東區台中路283號", url: "http://www.tcavs.tc.edu.tw" },
+  { system: "高職", name: "國立豐原高商", address: "[420]臺中市豐原區圓環南路50號", url: "http://www.pfyvs.tc.edu.tw" },
+  { system: "高職", name: "國立霧峰農工", address: "[413]臺中市霧峰區中正路1222號", url: "http://www.wufai.edu.tw" },
+  { system: "高中", name: "市立大里高中", address: "[412]臺中市大里區國中路365號", url: "http://www.dljh.tc.edu.tw" },
+  { system: "高中", name: "市立中港高中", address: "[435]臺中市梧棲區文昌路400號", url: "http://www.cgjh.tc.edu.tw" },
+  { system: "高中", name: "市立后綜高中", address: "[421]臺中市后里區廣福里三豐路80號", url: "http://www.htjh.tc.edu.tw" },
+  { system: "高中", name: "市立西苑高中", address: "[407]臺中市西屯區西苑路268號", url: "http://www.sysh.tc.edu.tw" },
+  { system: "高中", name: "市立忠明高中", address: "[403]臺中市西區博館路166號", url: "http://www.cmjh.tc.edu.tw/home.html" },
+  { system: "高中", name: "市立東山高中", address: "[406]臺中市北屯區景賢六路一段200號", url: "http://www.tsjh.tc.edu.tw" },
+  { system: "高中", name: "市立長億高中", address: "[411]臺中市太平區長億里長億六街1號", url: "http://www.cyhs.tc.edu.tw" },
+  { system: "高中", name: "市立惠文高中", address: "[408]臺中市南屯區公益路二段298號", url: "http://www.hwsh.tc.edu.tw" },
+  { system: "高中", name: "市立新社高中", address: "[426]臺中市新社區復盛里中和街三段國中巷10號", url: "http://www.sshs.tc.edu.tw" },
+  { system: "高中", name: "私立大明高中", address: "[412]臺中市大里區新仁路三段210號", url: "http://www.tmsh.tc.edu.tw" },
+  { system: "高中", name: "私立弘文高中", address: "[427]臺中市潭子區中山路三段221巷96號", url: "http://www.hwsh.tc.edu.tw" },
+  { system: "高中", name: "私立玉山高中", address: "[423]臺中市東勢區東崎街125之5號", url: "http://www.yssh.tc.edu.tw" },
+  { system: "高中", name: "私立立人高中", address: "[412]臺中市大里區中興路二段380號", url: "http://www.lzsh.tc.edu.tw" },
+  { system: "高中", name: "私立宜寧高中", address: "[402]臺中市南區復興路二段45號", url: "http://www.inhs.tc.edu.tw" },
+  { system: "高中", name: "私立明台高中", address: "[413]臺中市霧峰區萊園路91號", url: "http://www.mtvs.tc.edu.tw" },
+  { system: "高中", name: "私立明道高中", address: "[414]臺中市烏日區中山路一段497號", url: "http://www.mingdao.edu.tw" },
+  { system: "高中", name: "私立明德高中", address: "[402]臺中市南區明德街84號", url: "http://www.mdhs.tc.edu.tw" },
+  { system: "高中", name: "私立東大附中", address: "[407]臺中市西屯區台中港路三段181號", url: "http://www.hn.thu.edu.tw" },
+  { system: "高中", name: "私立青年高中", address: "[412]臺中市大里區中湖路100號", url: "http://www.ysjh.tc.edu.tw" },
+  { system: "高中", name: "私立致用高中", address: "[437]臺中市大甲區東陽新村71號", url: "http://www.cycivs.tc.edu.tw" },
+  { system: "高中", name: "私立華盛頓高中", address: "[411]臺中市太平區廓仔坑路26號(原弘仁)", url: "http://www.whs.tc.edu.tw" },
+  { system: "高中", name: "私立慈明高中", address: "[411]臺中市太平區光德路388號", url: "http://www.tmhs.tc.edu.tw" },
+  { system: "高中", name: "私立新民高中", address: "[404]臺中市北區三民路三段289號", url: "http://www.shinmin.tc.edu.tw" },
+  { system: "高中", name: "私立葳格高中", address: "[406]臺中市北屯區軍福十八路328號", url: "http://www.wagor.tc.edu.tw/~senior/" },
+  { system: "高中", name: "私立僑泰高中", address: "[412]臺中市大里區樹王路342號", url: "http://www.ctas.tc.edu.tw" },
+  { system: "高中", name: "私立嘉陽高中", address: "[436]臺中市清水區中清路1號", url: "http://www.cysh.tc.edu.tw" },
+  { system: "高中", name: "私立衛道高中", address: "[406]臺中市北屯區四平路161號", url: "http://www.vtsh.tc.edu.tw" },
+  { system: "高中", name: "私立曉明女中", address: "[404]臺中市北區中清路一段606號", url: "http://www.smgsh.tc.edu.tw" },
+  { system: "高中", name: "私立嶺東高中", address: "[408]臺中市南屯區春社里嶺東路2號", url: "http://www.lths.tc.edu.tw" },
+  { system: "高中", name: "財團法人常春藤高中", address: "[427]臺中市潭子區潭興路一段165巷320號", url: "http://www.ivyjhs.tc.edu.tw" },
+  { system: "高中", name: "國立大甲高中", address: "[437]臺中市大甲區中山路一段720號", url: "http://www.tcsh.tc.edu.tw" },
+  { system: "高中", name: "國立中科實驗高級中學", address: "[402]臺中市南區國光路250號(中興大學校本部雲平樓1樓)", url: "http://www.nehs.tc.edu.tw" },
+  { system: "高中", name: "國立文華高中", address: "[407]臺中市西屯區寧夏路240號", url: "http://www.whsh.tc.edu.tw" },
+  { system: "高中", name: "國立清水高中", address: "[436]臺中市清水區中山路90號", url: "http://www.cshs.tc.edu.tw" },
+  { system: "高中", name: "國立臺中一中", address: "[404]臺中市北區育才街2號", url: "http://www.tcfsh.tc.edu.tw" },
+  { system: "高中", name: "國立臺中二中", address: "[404]臺中市北區英士路109號", url: "http://www.tcssh.tc.edu.tw" },
+  { system: "高中", name: "國立臺中女中", address: "[403]臺中市西區自由路一段95號", url: "http://www.tcgs.tc.edu.tw" },
+  { system: "高中", name: "國立興大附中", address: "[412]臺中市大里區東榮路369號", url: "http://www.dali.tc.edu.tw" },
+  { system: "高中", name: "國立豐原高中", address: "[420]臺中市豐原區水源路150號", url: "http://www.fysh.tc.edu.tw" },
+  { system: "五專", name: "私立弘光科技大學", address: "[433]臺中市沙鹿區臺灣大道六段1018號", url: "http://www.hk.edu.tw" },
+  { system: "五專", name: "國立臺中科技大學", address: "[404]臺中市北區三民路三段129號", url: "http://www.nutc.edu.tw/bin/home.php" }
+];
